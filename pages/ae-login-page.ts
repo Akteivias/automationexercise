@@ -30,12 +30,6 @@ export class AeLoginPage {
 
   readonly continueButton: Locator;
 
-  readonly loginButton: Locator;
-
-  readonly loginEmail: Locator;
-  readonly loginPassword: Locator;
-  readonly incorrectLoginError: Locator;
-
   constructor(page: Page, userData: UserData) {
     this.page = page;
     this.userData = userData;
@@ -67,14 +61,6 @@ export class AeLoginPage {
     this.createAccountButton = page.locator('[data-qa="create-account"]');
 
     this.continueButton = page.locator('[data-qa="continue-button"]');
-
-    this.loginButton = page.locator('[data-qa="login-button"]');
-
-    this.loginEmail = page.locator('[data-qa="login-email"]');
-    this.loginPassword = page.locator('[data-qa="login-password"]');
-    this.incorrectLoginError = page.getByText(
-      "Your email or password is incorrect"
-    );
   }
 
   async enterNameAndEmail() {
@@ -119,26 +105,5 @@ export class AeLoginPage {
 
   async continueAfterAccountCreated() {
     await this.continueButton.click();
-  }
-
-  async login() {
-    await this.fillLoginForm();
-    await this.clickLoginButton();
-  }
-
-  async fillLoginForm() {
-    await this.loginEmail.fill(this.userData.email);
-    await this.loginPassword.fill(this.userData.password);
-  }
-
-  async clickLoginButton() {
-    await this.loginButton.click();
-    await this.incorrectLogin();
-  }
-
-  async incorrectLogin() {
-    if (await this.incorrectLoginError.isVisible()) {
-      console.log("email or password is incorrect");
-    }
   }
 }

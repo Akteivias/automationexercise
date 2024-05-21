@@ -84,7 +84,8 @@ test("User shop flow", async ({ page }) => {
 
   await test.step("Click on the “Login to your account” box and enter with previously created user", async () => {
     await helpers.clickLoginLink();
-    await aeLogin.login();
+    // await aeLogin.login();
+    await helpers.login();
   });
 
   await test.step("Click on “Contact us” on the header", async () => {
@@ -98,10 +99,10 @@ test("User shop flow", async ({ page }) => {
 
   await test.step("Press “OK” in the pop up", async () => {
     /* The dialog is handled in the clickSubmitButton method
-    ** by calling the helpers.handleDialog() method.
-    ** helpers.handleDialog() needs to be declared before clicking the submit button,
-    ** so the dialog can be handled.
-    */
+     ** by calling the helpers.handleDialog() method.
+     ** helpers.handleDialog() needs to be declared before clicking the submit button,
+     ** so the dialog can be handled.
+     */
   });
 
   await test.step("Click on the “Logout” button on the header", async () => {
